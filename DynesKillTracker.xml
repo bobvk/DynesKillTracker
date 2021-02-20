@@ -257,8 +257,10 @@ function getPlural(word,count) {
 	}
 	var exceptions = [];
 	exceptions["woman"] = "women";
+	exceptions["noblewoman"] = "noblewomen";
 	exceptions["thief"] = "thieves";
 	exceptions["man"] = "men";
+	exceptions["nobleman"] = "noblemen";
 	exceptions["lady"] = "ladies"; 
 	exceptions["dwarf"] = "dwarves"; 
 	exceptions["witch"] = "witches"; 
