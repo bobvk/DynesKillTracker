@@ -264,9 +264,9 @@ function getPlural(word,count) {
 	exceptions["witch"] = "witches"; 
 	exceptions["child"] = "children";
 
-	if ( exceptions[word] ) { 
+	if ( word in exceptions ) { 
 		return exceptions[word];
-	} else if ( word[word.length-1].toLowerCase() === 's' ) { 
+	} else if ( word.slice(-1).toLowerCase() === 's' ) { 
 			return word + "ses";
 	} else {
 		return word + "s";
