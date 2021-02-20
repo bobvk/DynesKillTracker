@@ -252,9 +252,6 @@ function trackShow() {
 
 function getPlural(word,count) { 
 	// returns plural of entities if needed
-	if ( typeof count === 'undefined' ) { 
-		count = 1;
-	}
 	if ( count == 1 ) {
 		return word;
 	}
@@ -267,7 +264,7 @@ function getPlural(word,count) {
 	exceptions["witch"] = "witches"; 
 	exceptions["child"] = "children";
 
-	if ( typeof exceptions[word] !==  'undefined' ) { 
+	if ( exceptions[word] ) { 
 		return exceptions[word];
 	} else if ( word[word.length-1].toLowerCase() === 's' ) { 
 			return word + "ses";
