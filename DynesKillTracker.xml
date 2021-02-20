@@ -265,11 +265,13 @@ function getPlural(word,count) {
 	exceptions["lady"] = "ladies"; 
 	exceptions["dwarf"] = "dwarves"; 
 	exceptions["witch"] = "witches"; 
-	exceptions["child"] = "children"; 
+	exceptions["child"] = "children";
 
 	if ( typeof exceptions[word] !==  'undefined' ) { 
 		return exceptions[word];
-	} else { 
+	} else if ( word[word.length-1].toLowerCase() === 's' ) { 
+			return word + "ses";
+	} else {
 		return word + "s";
 	}
 }
