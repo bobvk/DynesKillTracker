@@ -263,6 +263,9 @@ function getPlural(word,count) {
 	exceptions["thief"] = "thieves";
 	exceptions["man"] = "men";
 	exceptions["lady"] = "ladies"; 
+	exceptions["dwarf"] = "dwarves"; 
+	exceptions["witch"] = "witches"; 
+
 	if ( typeof exceptions[word] !==  'undefined' ) { 
 		return exceptions[word];
 	} else { 
