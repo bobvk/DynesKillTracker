@@ -151,39 +151,21 @@ function addKill() {
 
 function afterKillShow(killedThing) {
 	// Shows killtext after player kills something
-	// world.Note("0. " + killedThing);
 	if (killedThing.substr(0,1) != killedThing.substr(0,1).toUpperCase()) {
 		// world.Note("1. It's not a named NPC!");
-		var vowelsFromHell = "aieou";
 		killedThing = killedThing.split(" ");
 		var nameLength = killedThing.length;
 		killedThing = killedThing[parseInt(nameLength) - 1];
-		var killedText = "You have killed ";
-		if (vowelsFromHell.match(killedThing.substr(0,1).toLowerCase())) {
-			killedText += "an ";
-		} else {
-			killedText += "a ";
-		}
-	} else {
-		var killedText = "You have killed ";
 	}
 	
-	killedText += killedThing + " ";
-	// world.Note("2. " + killedText);
-	var lookupCount = 0;
-	
+	var lookupCount = 0;	
 	for (var entry in killList) {
 		if (entry.toLowerCase().match(killedThing.toLowerCase())) {
 			// world.Note("3. " + entry);
 			lookupCount += killList[entry];
 		}
 	}
-	killedText += lookupCount;
-	if (lookupCount > 1) {
-		killedText += " times!";
-	} else {
-		killedText += " time!";
-	}
+	var killedText = "You have killed " + lookupCount + " " + getPlural(killedThing,lookupCount) + "!";
 	world.Note(killedText);
 }
 
@@ -267,6 +249,28 @@ function trackShow() {
 
 
 // ### General functions ###
+
+function getPlural(word,count) { 
+	// returns plural of entities if needed
+	if ( typeof count === 'undefined' ) { 
+		count = 1;
+	}
+	if ( count == 1 ) {
+		return word;
+	}
+	var exceptions = [];
+	exceptions["woman"] = "women";
+	exceptions["thief"] = "thieves";
+	exceptions["man"] = "men";
+	exceptions["lady"] = "ladies"; 
+	if ( typeof exceptions[word] !==  'undefined' ) { 
+		return exceptions[word];
+	} else { 
+		return word + "s";
+	}
+}
+
+
 function parseTextToObject(text) {
 	// Parses a text to object, delimiters in order: "\n" and ";"
 	if (!(text)) {
